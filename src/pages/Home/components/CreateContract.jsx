@@ -18,6 +18,10 @@ const CreateContract = () => {
       return
     }
 
+    if (!firstName && !lastName) {
+      notifyError('Please enter first name or last name')
+      return
+    }
     await createContact({ firstName, lastName, email })
     notify('contact created!')
 

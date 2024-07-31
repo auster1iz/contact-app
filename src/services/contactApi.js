@@ -28,12 +28,6 @@ export const contactApi = createApi({
       query: ({ firstName, lastName, email }) => {
         const body = {
           fields: {
-            ['first name']: [
-              { value: firstName, modifier: '', label: 'first name' },
-            ],
-            ['last name']: [
-              { value: lastName, modifier: '', label: 'last name' },
-            ],
             email: [{ value: email, modifier: '', label: 'email' }],
           },
           record_type: 'person',
@@ -42,6 +36,17 @@ export const contactApi = createApi({
             read: null,
           },
           owner_id: null,
+        }
+
+        if (firstName) {
+          body.fields['first name'] = [
+            { value: firstName, modifier: '', label: 'first name' },
+          ]
+        }
+        if (lastName) {
+          body.fields['last name'] = [
+            { value: lastName, modifier: '', label: 'last name' },
+          ]
         }
 
         return {
