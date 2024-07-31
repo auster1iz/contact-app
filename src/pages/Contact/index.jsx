@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import ContactInfo from '../../components/ContactInfo'
 import TagsList from '../../components/TagsList'
 import { contactApi } from '../../services/contactApi'
+import { ROUTES } from '../../constants/routes'
 import AddNewTag from './components/AddNewTag'
 
 const Contact = () => {
@@ -35,6 +36,10 @@ const Contact = () => {
               {!!contact?.tags?.length && <TagsList tags={contact?.tags} />}
             </div>
             <AddNewTag id={id} tags={contact?.tags} />
+
+            <div className="mt-8 text-center">
+              <Link to={ROUTES.home}>Back</Link>
+            </div>
           </div>
         )}
       </div>
