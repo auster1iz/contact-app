@@ -1,6 +1,5 @@
-export const BASE_URL = 'http://localhost:4000'
-// export const BASE_URL = 'https://live.devnimble.com/api/v1'
-export const AUTH_TOKEN = 'VlP9cwH6cc7Kg2LsNPXpAvF6QNmgZn'
+// I'm making requests to you API from proxy backend to avoid CORS
+export const BASE_URL = 'https://proxy-production-bc7c.up.railway.app'
 
 export const REQUEST_URLS = {
   getContacts: '/api/v1/contacts',
