@@ -1,7 +1,7 @@
 import React from 'react'
 import Avatar from './Avatar'
 
-const ContractInfo = ({ avatarSize, avatarSrc }) => {
+const ContactInfo = ({ avatarSize, avatarSrc }) => {
   return (
     <div className="flex items-center gap-3">
       <Avatar size={avatarSize} src={avatarSrc} />
@@ -13,4 +13,4 @@ const ContractInfo = ({ avatarSize, avatarSrc }) => {
   )
 }
 
-export default ContractInfo
+export default ContactInfo

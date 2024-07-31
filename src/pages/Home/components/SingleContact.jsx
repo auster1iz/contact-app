@@ -1,16 +1,16 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import DeleteIcon from '../../../assets/icons/delete-icon.svg'
-import ContractInfo from '../../../components/ContractInfo'
+import ContactInfo from '../../../components/ContactInfo'
 import { stopPropagation } from '../../../utils/stopPropagation'
 import { ROUTES } from '../../../constants/routes'
 import TagsList from '../../../components/TagsList'
 
-const SingleContract = () => {
+const SingleContact = () => {
   const navigate = useNavigate()
 
   const navigateToContract = () => {
-    navigate(ROUTES.contract.replace(':id', '2'))
+    navigate(ROUTES.contact.replace(':id', '2'))
   }
 
   return (
@@ -19,7 +19,7 @@ const SingleContract = () => {
       onClick={navigateToContract}
     >
       <div className="flex justify-between items-start">
-        <ContractInfo />
+        <ContactInfo />
         <div className="cursor-pointer" onClick={stopPropagation}>
           <img className="w-full h-full" src={DeleteIcon} alt="delete" />
         </div>
@@ -31,4 +31,4 @@ const SingleContract = () => {
   )
 }
 
-export default SingleContract
+export default SingleContact
