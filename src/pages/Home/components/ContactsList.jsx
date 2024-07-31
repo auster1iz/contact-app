@@ -1,14 +1,17 @@
 import React from 'react'
+import { contactApi } from '../../../services/contactApi'
 import SingleContact from './SingleContact'
 
 const ContactsList = () => {
+  const { data, isLoading } = contactApi.useGetAllContactsQuery('')
+
   return (
     <div className="w-full max-w-[328px] md:max-w-[558px] flex flex-col gap-4 max-h-[640px] pb-2 overflow-auto">
-      <SingleContact />
-      <SingleContact />
-      <SingleContact />
-      <SingleContact />
-      <SingleContact />
+      {isLoading && <div className="mx-auto">Loading...</div>}
+      {!!data?.resources?.length &&
+        data.resources.map((contact) => (
+          <SingleContact key={contact.id} contact={contact} />
+        ))}
     </div>
   )
 }

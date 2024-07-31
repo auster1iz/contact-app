@@ -1,13 +1,15 @@
 import React from 'react'
 import Avatar from './Avatar'
 
-const ContactInfo = ({ avatarSize, avatarSrc }) => {
+const ContactInfo = ({ avatarSize, avatarSrc, firstName, lastName, email }) => {
   return (
     <div className="flex items-center gap-3">
       <Avatar size={avatarSize} src={avatarSrc} />
       <div>
-        <p>First Name Last Name</p>
-        <p>email@email.com</p>
+        <p>
+          {firstName} {lastName}
+        </p>
+        <p>{email}</p>
       </div>
     </div>
   )
