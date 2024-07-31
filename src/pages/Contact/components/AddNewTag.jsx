@@ -5,7 +5,7 @@ import { contactApi } from '../../../services/contactApi'
 import { notifyError } from '../../../utils/notify'
 
 const AddNewTag = ({ id, tags }) => {
-  const [addNewTag] = contactApi.useAddNewTagMutation()
+  const [addNewTag, { isLoading }] = contactApi.useAddNewTagMutation()
 
   const [tag, setTag] = useState('')
 
@@ -16,6 +16,7 @@ const AddNewTag = ({ id, tags }) => {
     }
     const previousTegs = tags.map((tag) => tag.tag)
     await addNewTag({ id, tags: [...previousTegs, tag] })
+    setTag('')
   }
 
   return (
@@ -25,7 +26,7 @@ const AddNewTag = ({ id, tags }) => {
         onChange={(e) => setTag(e.target.value)}
         placeholder="Add new Tag"
       />
-      <Button onClick={addTag} buttonText="Add Tag" />
+      <Button onClick={addTag} buttonText="Add Tag" disabled={isLoading} />
     </div>
   )
 }

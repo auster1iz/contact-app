@@ -1,5 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { BASE_URL } from '../constants/api'
+import { BASE_URL, REQUEST_URLS } from '../constants/api'
+
+const ContactsTag = 'Contacts'
+const SingleContactTag = 'SingleContact'
 
 export const contactApi = createApi({
   reducerPath: 'contactApi',
@@ -10,16 +13,16 @@ export const contactApi = createApi({
   endpoints: (build) => ({
     getAllContacts: build.query({
       query: () => ({
-        url: '/api/v1/contacts',
+        url: REQUEST_URLS.getContacts,
         params: { sort: 'created:desc' },
       }),
-      providesTags: [{ type: 'Contacts' }],
+      providesTags: [{ type: ContactsTag }],
     }),
     getSingleContact: build.query({
       query: (id) => ({
-        url: `/api/v1/contact/${id}`,
+        url: REQUEST_URLS.getSingleContact.replace('${id}', id),
       }),
-      providesTags: [{ type: 'SingleContact' }],
+      providesTags: [{ type: SingleContactTag }],
     }),
     createContact: build.mutation({
       query: ({ firstName, lastName, email }) => {
@@ -42,31 +45,31 @@ export const contactApi = createApi({
         }
 
         return {
-          url: '/api/v1/contact',
+          url: REQUEST_URLS.createContact,
           method: 'POST',
           body,
         }
       },
-      invalidatesTags: [{ type: 'Contacts' }],
+      invalidatesTags: [{ type: ContactsTag }],
     }),
     deleteContact: build.mutation({
       query: (id) => ({
-        url: `/api/v1/contact/${id}`,
+        url: REQUEST_URLS.deleteContact.replace('${id}', id),
         method: 'DELETE',
       }),
-      invalidatesTags: [{ type: 'Contacts' }],
+      invalidatesTags: [{ type: ContactsTag }],
     }),
     addNewTag: build.mutation({
       query: ({ id, tags }) => {
         return {
-          url: `/api/v1/contacts/${id}/tags`,
+          url: REQUEST_URLS.addTags.replace('${id}', id),
           method: 'PUT',
           body: {
             tags,
           },
         }
       },
-      invalidatesTags: [{ type: 'SingleContact' }],
+      invalidatesTags: [{ type: SingleContactTag }],
     }),
   }),
 })

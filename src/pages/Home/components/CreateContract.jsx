@@ -3,10 +3,10 @@ import { TextInput } from '../../../components/Input'
 import Button from '../../../components/Button'
 import { contactApi } from '../../../services/contactApi'
 import { isEmailValid } from '../../../utils/isEmailValid'
-import { notifyError } from '../../../utils/notify'
+import { notify, notifyError } from '../../../utils/notify'
 
 const CreateContract = () => {
-  const [createContact] = contactApi.useCreateContactMutation()
+  const [createContact, { isLoading }] = contactApi.useCreateContactMutation()
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -19,6 +19,7 @@ const CreateContract = () => {
     }
 
     await createContact({ firstName, lastName, email })
+    notify('contact created!')
 
     setFirstName('')
     setLastName('')
@@ -49,7 +50,11 @@ const CreateContract = () => {
           onChange={(e) => setEmail(e.target.value)}
           label="Email"
         />
-        <Button onClick={onSubmit} buttonText="Add Contact" />
+        <Button
+          onClick={onSubmit}
+          buttonText="Add Contact"
+          disabled={isLoading}
+        />
       </div>
     </form>
   )

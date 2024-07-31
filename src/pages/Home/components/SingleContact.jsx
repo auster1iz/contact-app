@@ -6,6 +6,7 @@ import { stopPropagation } from '../../../utils/stopPropagation'
 import { ROUTES } from '../../../constants/routes'
 import TagsList from '../../../components/TagsList'
 import { contactApi } from '../../../services/contactApi'
+import { notify } from '../../../utils/notify'
 
 const SingleContact = ({ contact }) => {
   const [deleteContact] = contactApi.useDeleteContactMutation()
@@ -18,6 +19,7 @@ const SingleContact = ({ contact }) => {
   const onDelete = async (e) => {
     stopPropagation(e)
     await deleteContact(contact.id)
+    notify('contact deleted!')
   }
 
   return (
