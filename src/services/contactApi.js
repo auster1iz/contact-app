@@ -69,7 +69,7 @@ export const contactApi = createApi({
           },
         }
       },
-      invalidatesTags: [{ type: SingleContactTag }],
+      invalidatesTags: [{ type: SingleContactTag }, { type: ContactsTag }],
     }),
   }),
 })
