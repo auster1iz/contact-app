@@ -33,7 +33,7 @@ const CreateContract = () => {
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
-      className="w-full max-w-[280px] flex gap-2.5 flex-col"
+      className="w-full max-w-[280px] flex gap-2.5 flex-col sticky top-0"
     >
       <div className="flex gap-0.5 flex-col">
         <h2 className="text-xl font-medium leading-7">Create Contract</h2>
